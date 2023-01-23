@@ -1,3 +1,4 @@
+using TSOGD.CONTROLS;
 using TSOGD.MANAGERS;
 using TSOGD.PREFABS;
 using UnityEngine;
@@ -48,7 +49,7 @@ namespace TSOGD.SCENES { public class LaunchScene : MonoBehaviour
             ViewsManager.Instance.SetExitView(_exit);
             ViewsManager.Instance.SetCurrentView(_first);
         } else {
-            //todo: Load Scene Manager
+            Reset.LoadManagers();
         }
     }
     //################################################################################################################################

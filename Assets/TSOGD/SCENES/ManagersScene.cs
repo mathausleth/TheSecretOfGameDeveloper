@@ -1,3 +1,4 @@
+using TSOGD.CONTROLS;
 using TSOGD.MANAGERS;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -60,6 +61,7 @@ namespace TSOGD.SCENES { public class ManagersScene : MonoBehaviour
             if (!_managers[i]) loadNextScene = false;
         }
         if (loadNextScene) SceneManager.LoadScene("DatasScene");
+        else Reset.LoadManagers();
     }    
     //################################################################################################################################
     #endregion
