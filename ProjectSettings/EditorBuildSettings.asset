@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TSOGD/SCENES/ManagersScene.unity
     guid: d52b594a057e68f4f98e7259b35e0d35
+  - enabled: 1
+    path: Assets/TSOGD/SCENES/DatasScene.unity
+    guid: 5ebb366167b1d2c42a3a972ec9348880
+  - enabled: 1
+    path: Assets/TSOGD/SCENES/LaunchScene.unity
+    guid: 43680ef439378a04da70f0dab63edcd2
   m_configObjects: {}
