@@ -1,22 +1,21 @@
+using TSOGD.MANAGERS;
 using TSOGD.PREFABS;
 using UnityEngine;
-namespace TSOGD.MANAGERS { public class ViewsManager : MonoBehaviour
+namespace TSOGD.SCENES { public class LaunchScene : MonoBehaviour
 {
     //##### SERIALIZE FIELD PARAMETERS ###############################################################################################
     
     //##### SERIALIZE FIELD REFERENCES ###############################################################################################
-    
+    [SerializeField] Views _first;
+    [SerializeField] Views _exit;
     //##### SERIALIZE FIELD ARRAYS ###################################################################################################
     
     //##### TIMERS ###################################################################################################################
     
     //##### SINGLETON ################################################################################################################
-    private static ViewsManager _instance;
-    public static ViewsManager Instance { get => _instance; }
+    
     //##### OBJECTS ##################################################################################################################
-    private Views _exitView;
-    private Views _currentView;
-    private Views _nextView;
+    
     //##### OBJECTS ARRAYS ###########################################################################################################
     
     //##### REGIONS ##################################################################################################################
@@ -31,7 +30,7 @@ namespace TSOGD.MANAGERS { public class ViewsManager : MonoBehaviour
     }
     void Update()
     {
-        ViewsManagerMecanism();
+            
     }
     #endregion
 	//################################################################################################################################
@@ -41,21 +40,16 @@ namespace TSOGD.MANAGERS { public class ViewsManager : MonoBehaviour
     //################################################################################################################################
     private void InitializeAwakeReferences()
     {
-        InitializeSingleton();
+    
     }
     private void InitializeStartReferences()
     {
-    
-    }
-    private void InitializeSingleton()
-    {
-        if (_instance && _instance != this) {
-            Destroy(this);
-            return;
+        if (ViewsManager.Instance) {
+            ViewsManager.Instance.SetExitView(_exit);
+            ViewsManager.Instance.SetCurrentView(_first);
         } else {
-            _instance = this;
+            //todo: Load Scene Manager
         }
-        DontDestroyOnLoad(_instance);
     }
     //################################################################################################################################
     #endregion
@@ -64,53 +58,7 @@ namespace TSOGD.MANAGERS { public class ViewsManager : MonoBehaviour
     //##### PRIMITIVES ###############################################################################################################
     
     //################################################################################################################################
-    private void ViewsManagerMecanism()
-    {
-        if (_currentView && _currentView.ChangeView) {
-            _currentView.CloseView();
-            LoadNextView();
-        }
-    }
-    /// <summary>
-    /// Charge la vue suivante.
-    /// Sinon, la vue finale.
-    /// </summary>
-    private void LoadNextView()
-    {
-        if (_nextView) {
-            _currentView = _nextView;
-            _nextView = null;
-            _currentView.OpenView();
-        } else {
-            _exitView.OpenView();
-        }
-    }
-    /// <summary>
-    /// Assigne la vue finale permetant de quitter le jeu.
-    /// </summary>
-    /// <param name="exitView">[Views] la vue finale</param>
-    public void SetExitView(Views exitView)
-    {
-        _exitView = exitView;
-    }
-    /// <summary>
-    /// Assigne la vue courante.
-    /// </summary>
-    /// <param name="currentView">[Views] la vue courante</param>
-    public void SetCurrentView(Views currentView)
-    {
-        _currentView = currentView;
-        _nextView = null;
-        _currentView.OpenView();
-    }
-    /// <summary>
-    /// Assigne la vue suivante.
-    /// </summary>
-    /// <param name="nextView">[Views] la vue suivante</param>
-    public void SetNextView(Views nextView)
-    {
-        _nextView = nextView;
-    }
+    
     //################################################################################################################################
     #endregion
 	//################################################################################################################################
