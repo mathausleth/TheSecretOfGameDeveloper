@@ -14,6 +14,7 @@ namespace TSOGD.PREFABS { public class Views : MonoBehaviour
     
     //##### OBJECTS ##################################################################################################################
     private ViewsManager _viewsManager;
+    private ITransition _viewTransition;
     //##### OBJECTS ARRAYS ###########################################################################################################
     
     //##### REGIONS ##################################################################################################################
@@ -38,11 +39,12 @@ namespace TSOGD.PREFABS { public class Views : MonoBehaviour
     //################################################################################################################################
     private void InitializeAwakeReferences()
     {
-    
+        _viewTransition = GetComponentInChildren<ITransition>();
     }
     private void InitializeStartReferences()
     {
         _viewsManager = ViewsManager.Instance;
+        if (_viewTransition != null) _viewTransition.Play();
     }
     //################################################################################################################################
     #endregion
