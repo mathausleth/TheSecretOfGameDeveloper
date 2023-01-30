@@ -2,8 +2,8 @@ using UnityEngine;
 namespace TSOGD.SCRIPTS { public class Title : MonoBehaviour
 {
     //##### SERIALIZE FIELD PARAMETERS ###############################################################################################
-    [SerializeField] private float _cloudsStartPosition = 1240f;
-    [SerializeField] private float _cloudsEndPosition = -415f;
+    [SerializeField] private float _cloudsStartPosition = 600f;
+    [SerializeField] private float _cloudsEndPosition = -590f;
     [SerializeField] private float _cloudsSpeedTransition = 2f;
     //##### SERIALIZE FIELD REFERENCES ###############################################################################################
     [SerializeField] private RectTransform _cloudsRectTransform;
@@ -48,7 +48,7 @@ namespace TSOGD.SCRIPTS { public class Title : MonoBehaviour
     private void InitializeCloudsPosition()
     {
         if (_cloudsRectTransform) {
-            _initialCloudsPosition = _cloudsRectTransform.position;
+            _initialCloudsPosition = _cloudsRectTransform.localPosition;
             _initialCloudsPosition.x = _cloudsStartPosition;
         }
     }
@@ -67,8 +67,8 @@ namespace TSOGD.SCRIPTS { public class Title : MonoBehaviour
     /// </summary>
     private void CloudsTransition() {
         if (_cloudsRectTransform) {
-            if (_cloudsEndPosition < _cloudsRectTransform.position.x) _cloudsRectTransform.Translate(Vector3.left * Time.deltaTime * _cloudsSpeedTransition);
-            else _cloudsRectTransform.position = _initialCloudsPosition;
+            if (_cloudsEndPosition < _cloudsRectTransform.localPosition.x) _cloudsRectTransform.Translate(Vector3.left * Time.deltaTime * _cloudsSpeedTransition);
+            else _cloudsRectTransform.localPosition = _initialCloudsPosition;
         }
     }
     //################################################################################################################################
