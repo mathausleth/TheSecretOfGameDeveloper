@@ -21,6 +21,7 @@ namespace TSOGD.SCRIPTS { public class Title : MonoBehaviour
     //##### OBJECTS ##################################################################################################################
     private Vector3 _initialCloudsPosition;
     private TextMeshProUGUI _incipitTMPro;
+    private Credits _credit;
     //##### OBJECTS ARRAYS ###########################################################################################################
     
     //##### REGIONS ##################################################################################################################
@@ -46,6 +47,7 @@ namespace TSOGD.SCRIPTS { public class Title : MonoBehaviour
     private void InitializeAwakeReferences()
     {
         _incipitTimer = gameObject.AddComponent<Chrono>();
+        _credit = transform.parent.GetComponentInChildren<Credits>(true);
     }
     private void InitializeStartReferences()
     {
@@ -123,7 +125,7 @@ namespace TSOGD.SCRIPTS { public class Title : MonoBehaviour
     /// Affiche le titre du jeu et les credits.
     /// </summary>
     private void ShowTitle() {
-        //todo: afficher la vue titre.
+        _credit.gameObject.SetActive(true);
     }
     //################################################################################################################################
     #endregion
